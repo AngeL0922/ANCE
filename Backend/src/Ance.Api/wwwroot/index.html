@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Solicitudes · Digitalización</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="barra">
+        <h1>Solicitudes de Digitalización</h1>
+        <nav>
+            <a href="#/">Listado</a>
+            <a href="#/nueva" class="boton">Nueva solicitud</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="aviso" class="aviso oculto"></div>
+
+        <section id="vista-listado" class="vista">
+            <label class="filtro">Estado
+                <select id="filtro-estado"><option value="">Todos</option></select>
+            </label>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Folio</th><th>Título</th><th>Solicitante</th><th>Prioridad</th>
+                        <th>Responsable</th><th>Estado</th><th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-solicitudes"></tbody>
+            </table>
+            <p id="sin-resultados" class="oculto">No hay solicitudes.</p>
+        </section>
+
+        <section id="vista-nueva" class="vista oculto">
+            <h2>Nueva solicitud</h2>
+            <form id="form-nueva" novalidate>
+                <label>Solicitante *<input name="solicitante" maxlength="150"><small class="error" data-campo="solicitante"></small></label>
+                <label>Correo *<input name="correo" type="email" maxlength="254"><small class="error" data-campo="correo"></small></label>
+                <label>Tipo *<select name="tipoSolicitudId" id="sel-tipo"><option value="">Selecciona…</option></select><small class="error" data-campo="tipoSolicitudId"></small></label>
+                <label>Prioridad<select name="prioridadId" id="sel-prioridad"></select></label>
+                <label>Responsable<select name="responsableId" id="sel-responsable-nuevo"><option value="">Sin asignar</option></select></label>
+                <label>Título *<input name="titulo" maxlength="150"><small class="error" data-campo="titulo"></small></label>
+                <label>Descripción *<textarea name="descripcion" rows="5" maxlength="4000"></textarea><small class="error" data-campo="descripcion"></small></label>
+                <button type="submit" class="boton">Registrar</button>
+            </form>
+        </section>
+
+        <section id="vista-detalle" class="vista oculto">
+            <a href="#/">← Volver al listado</a>
+            <h2 id="det-titulo"></h2>
+            <dl id="det-datos" class="datos"></dl>
+
+            <div class="paneles">
+                <div>
+                    <h3>Responsable</h3>
+                    <form id="form-asignar">
+                        <select id="sel-responsable"></select>
+                        <button type="submit" class="boton">Asignar</button>
+                    </form>
+                </div>
+                <div>
+                    <h3>Estado</h3>
+                    <div id="acciones-estado"></div>
+                    <textarea id="comentario" rows="3" placeholder="Comentario (obligatorio para pasar a Resuelta)"></textarea>
+                </div>
+            </div>
+
+            <h3>Historial</h3>
+            <ol id="historial" class="historial"></ol>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
